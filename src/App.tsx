@@ -12,7 +12,7 @@ import BarChart from './components/BarChart';
 
 function App() {
   // TODO: 얼마 안 되는 데이터지만, 데이터가 늘어날 것을 대비해 메모이제이션 해줘야 함
-  // const chartTime = Object.keys(MockData.response);
+  const chartTimes = Object.keys(MockData.response);
   const chartValues = Object.values(MockData.response);
 
   // TODO: grid 때문에 남긴 ClassName의 Type 통일해서 다뤄야 함.
@@ -22,8 +22,8 @@ function App() {
       <ChartWrapper>
         <AreaYAxis className="one" />
         <Charts className="two">
-          <BarChart chartValues={chartValues} />
-          <AreaChart />
+          <BarChart chartValues={chartValues} chartTimes={chartTimes} />
+          <AreaChart chartValues={chartValues} chartTimes={chartTimes} />
         </Charts>
         <BarYAxis className="three" />
         <XAxis className="four" />
@@ -45,6 +45,5 @@ const ChartWrapper = styled.div`
   }
 `;
 const Charts = styled.div`
-  background-color: goldenrod;
   position: relative;
 `;

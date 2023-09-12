@@ -1,21 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import { ChartProps } from '../types';
 
-export type ChartValue = {
-  id: string;
-  value_area: number;
-  value_bar: number;
-};
-
-type ChartProps = {
-  chartValues: ChartValue[];
-};
-
-function BarChart({ chartValues }: ChartProps) {
+function BarChart({ chartValues, chartTimes }: ChartProps) {
   return (
     <BarChartWrapper>
-      {chartValues.map((chartValue) => (
-        <Bar key={chartValue.id} $valueBar={chartValue.value_bar} />
+      {chartValues.map((chartValue, idx) => (
+        <Bar key={chartTimes[idx]} $valueBar={chartValue.value_bar} />
       ))}
     </BarChartWrapper>
   );
@@ -29,8 +20,8 @@ const BarChartWrapper = styled.ul`
 `;
 
 const Bar = styled.li<{ $valueBar: number }>`
-  background-color: skyblue;
-  border: 1px solid black;
+  background-color: rgba(162, 155, 254, 1);
+  margin-right: 1px;
   width: 16px;
   height: ${(props) => `${props.$valueBar / 200}%`};
 `;
