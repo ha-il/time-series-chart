@@ -1,90 +1,48 @@
 import React from 'react';
 import styled from 'styled-components';
-
-const DATA = [
-  { id: 0, start: 0.4, end: 0.8, value: '40%' },
-  { id: 1, start: 0.8, end: 0.6, value: '80%' },
-  { id: 2, start: 0.6, end: 1.0, value: '60%' },
-  { id: 3, start: 1.0, end: 0.3, value: '100%' },
-  { id: 4, start: 0.3, end: 0, value: '30%' },
-];
-
-/*
-{ id: 0, start: 0.1, end: 0.4, value: '40%' },
-{ id: 1, start: 0.4, end: 0.8, value: '80%' },
-{ id: 2, start: 0.8, end: 0.6, value: '60%' },
-{ id: 3, start: 0.6, end: 1.0, value: '100%' },
-{ id: 4, start: 1.0, end: 0.3, value: '30%' },
-*/
-
-const AreaChart = styled.ul`
-  /* Reset */
-  margin: 0;
-  padding: 0;
-  border: 0;
-
-  /* Dimensions */
-  width: 100%;
-  max-width: 100%;
-  height: 300px;
-
-  /* Layout */
-  display: flex;
-  justify-content: stretch;
-  align-items: stretch;
-  flex-direction: row;
-
-  list-style: none;
-`;
-
-const ChartList = styled.li<{ $start: number; $end: number }>`
-  flex-grow: 1;
-  flex-shrink: 1;
-  flex-basis: 0;
-  background: rgba(240, 50, 50, 0.75);
-  clip-path: polygon(
-    0% calc(100% * (${(props) => 1 - props.$start})),
-    100% calc(100% * (${(props) => 1 - props.$end})),
-    100% 100%,
-    0% 100%
-  );
-  &:hover span {
-    display: block;
-  }
-  position: relative;
-`;
-
-const ToolTipText = styled.span`
-  display: none;
-  left: 40%;
-  bottom: 0%;
-  position: absolute;
-  max-width: 200px;
-  border: 1px solid;
-  border-radius: 5px;
-  padding: 5px;
-  font-size: 0.8em;
-  color: black;
-  background: deeppink;
-  z-index: 2;
-`;
-
-function ToolTip({ text }: { text: string }) {
-  return <ToolTipText>{text}</ToolTipText>;
-}
+import FilteringButtons from './components/FilteringButtons';
+import ChartLegends from './components/ChartLegends';
+import AreaYAxis from './components/AxisItems/AreaYAxis';
+import BarYAxis from './components/AxisItems/BarYAxis';
+import XAxis from './components/AxisItems/XAxis';
+import BarChart from './components/BarChart';
+import AreaChart from './components/AreaChart';
+// import MockData from './mock_data.json';
 
 function App() {
+  /* TODO: 얼마 안 되는 데이터지만, 데이터가 늘어날 것을 대비해 메모이제이션 해줘야 함
+  const chartTime = Object.keys(MockData.response);
+  const chartValue = Object.values(MockData.response);
+  */
+  // TODO: grid 때문에 남긴 ClassName의 Type 통일해서 다뤄야 함.
   return (
     <div className="App">
-      <AreaChart className="area-chart">
-        {DATA.map(({ id, start, end, value }) => (
-          <ChartList key={id} $start={start} $end={end}>
-            <ToolTip text={value} />
-          </ChartList>
-        ))}
-      </AreaChart>
+      <FilteringButtons />
+      <ChartWrapper>
+        <AreaYAxis className="one" />
+        <Graphs className="two">
+          <BarChart />
+          <AreaChart />
+        </Graphs>
+        <BarYAxis className="three" />
+        <XAxis className="four" />
+      </ChartWrapper>
+      <ChartLegends />
     </div>
   );
 }
 
 export default App;
+
+const ChartWrapper = styled.div`
+  display: grid;
+  height: 80vh;
+  grid-template-columns: 10% 80% 10%;
+  grid-template-rows: 90% 10%;
+  & .four {
+    grid-column: 1 / 4;
+  }
+`;
+const Graphs = styled.div`
+  background-color: goldenrod;
+`;
