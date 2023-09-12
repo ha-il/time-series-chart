@@ -1,3 +1,1 @@
-# Create React App Boilerplate with Typescript
-
-CRA-Typescript 설치 후 ESLint, Prettier, Husky를 추가한 CRA 보일러플레이트입니다.
+# 원티드 프리온보딩 프론트엔드 12기 Week 4 과제 - 시계열 차트 구현
