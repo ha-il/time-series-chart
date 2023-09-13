@@ -11,7 +11,7 @@ const BUTTONS_VALUES = [
 ];
 
 function FilteringButtons() {
-  const { setFilteringId } = useFiltering();
+  const { filteringId, setFilteringId } = useFiltering();
 
   const filterById: MouseEventHandler<HTMLButtonElement> = ({
     currentTarget,
@@ -23,9 +23,14 @@ function FilteringButtons() {
     <Buttons>
       {BUTTONS_VALUES.map(({ id, value }) => (
         <li key={id}>
-          <button type="button" onClick={filterById} value={value}>
+          <Button
+            type="button"
+            onClick={filterById}
+            value={value}
+            $isSelected={value === filteringId}
+          >
             {value}
-          </button>
+          </Button>
         </li>
       ))}
     </Buttons>
@@ -36,4 +41,8 @@ export default FilteringButtons;
 const Buttons = styled.ul`
   display: flex;
   margin: 0 0 16px 0;
+`;
+
+const Button = styled.button<{ $isSelected: boolean }>`
+  background-color: ${(props) => (props.$isSelected ? 'blue' : 'white')};
 `;
