@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { ChartProps } from '../types';
 import { useFiltering } from '../contexts/filteringContext';
+import ToolTip from './ToolTip';
 
 function BarChart({ chartValues, chartTimes }: ChartProps) {
   const { filteringId } = useFiltering();
@@ -12,7 +13,9 @@ function BarChart({ chartValues, chartTimes }: ChartProps) {
           key={chartTimes[idx]}
           $valueBar={chartValue.value_bar}
           $isFilterd={chartValue.id === filteringId}
-        />
+        >
+          <ToolTip chartValue={chartValue} />
+        </Bar>
       ))}
     </BarChartWrapper>
   );
@@ -29,9 +32,13 @@ const Bar = styled.li<{ $valueBar: number; $isFilterd: boolean }>`
   background-color: ${(props) =>
     props.$isFilterd ? 'rgba(108, 92, 231,1.0)' : 'rgba(162, 155, 254, 1)'};
   width: 16px;
-  height: ${(props) => `${props.$valueBar / 200}%`};
+  height: ${(props) => `${props.$valueBar / 197}%`};
   margin-right: 1px;
   &:first-child {
     margin-left: 1px;
   }
+  &:hover .tool_tip {
+    display: block;
+  }
+  position: relative;
 `;
