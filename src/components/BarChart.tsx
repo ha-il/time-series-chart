@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import styled from 'styled-components';
 import { ChartProps } from '../types';
 import { useFiltering } from '../contexts/filteringContext';
 import ToolTip from './ToolTip';
 
 function BarChart({ chartValues, chartTimes }: ChartProps) {
-  const { filteringId } = useFiltering();
+  const { filteringId, setFilteringId } = useFiltering();
+
+  const filterByBar: MouseEventHandler<HTMLLIElement> = ({ currentTarget }) => {
+    setFilteringId(currentTarget.id);
+  };
+
   return (
     <BarChartWrapper>
       {chartValues.map((chartValue, idx) => (
@@ -13,6 +18,8 @@ function BarChart({ chartValues, chartTimes }: ChartProps) {
           key={chartTimes[idx]}
           $valueBar={chartValue.value_bar}
           $isFilterd={chartValue.id === filteringId}
+          onClick={filterByBar}
+          id={chartValue.id}
         >
           <ToolTip chartValue={chartValue} />
         </Bar>
