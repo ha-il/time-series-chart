@@ -26,7 +26,7 @@ function App() {
           <AreaChart chartValues={chartValues} chartTimes={chartTimes} />
         </Charts>
         <BarYAxis className="three" />
-        <XAxis className="four" />
+        <XAxis className="four" chartTimes={chartTimes} />
       </ChartWrapper>
       <ChartLegends />
     </div>
