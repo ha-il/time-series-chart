@@ -8,7 +8,3 @@ export type ChartProps = {
   chartValues: ChartValue[];
   chartTimes: string[];
 };
-
-export type YAxisProps = {
-  className: string;
-};

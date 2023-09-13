@@ -5,11 +5,10 @@ import splitStringBySpace from '../../utils/splitStringBySpace';
 import filterElementsWithInterval from '../../utils/filterElementsWithInterval';
 
 type XAxisProps = {
-  className: string;
   chartTimes: string[];
 };
 
-function XAxis({ className, chartTimes }: XAxisProps) {
+function XAxis({ chartTimes }: XAxisProps) {
   const extractedTimes = chartTimes.map(
     (chartTime) => splitStringBySpace(chartTime)[1],
   );
@@ -20,9 +19,12 @@ function XAxis({ className, chartTimes }: XAxisProps) {
   });
 
   return (
-    <XAxisWrapper className={className}>
+    <XAxisWrapper className="x_axis">
       {filteredTimes.map((time) => (
-        <XAxisValue key={time}>{time}</XAxisValue>
+        <XAxisValue key={time}>
+          <span>|</span>
+          <span>{time}</span>
+        </XAxisValue>
       ))}
     </XAxisWrapper>
   );
@@ -33,9 +35,13 @@ const XAxisWrapper = styled.ul`
   height: 100%;
   display: flex;
   justify-content: space-between;
-  background-color: tomato;
+  border-top: 1px solid black;
+  //background-color: tomato;
 `;
 
 const XAxisValue = styled.li`
   font-size: 0.5rem;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 `;

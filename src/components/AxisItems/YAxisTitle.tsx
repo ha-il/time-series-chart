@@ -16,11 +16,13 @@ export default YAxisTitle;
 
 const YAxisTitleWrapper = styled.div`
   height: 100%;
-  background-color: green;
+  width: 50%;
+  //background-color: green;
   display: flex;
   align-items: center;
   justify-content: center;
   & span {
     writing-mode: vertical-rl;
+    transform: rotate(180deg);
   }
 `;

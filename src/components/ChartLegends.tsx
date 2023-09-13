@@ -22,6 +22,12 @@ const Legends = styled.ul`
   list-style: none;
   display: flex;
   justify-content: center;
+  & li:first-child {
+    color: var(--main-color);
+  }
+  & li:last-child {
+    color: var(--sub-color);
+  }
 `;
 
 const LegendElement = styled.li`

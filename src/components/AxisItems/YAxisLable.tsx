@@ -22,13 +22,15 @@ const YAxisLableWrapper = styled.ul`
   display: flex;
   flex-direction: column-reverse;
   justify-content: space-between;
-  background-color: cornflowerblue;
+  background-color: white;
+  border-bottom: 1px solid black;
 `;
 
 const YAxisLableValue = styled.li`
   border-bottom: 1px solid black;
   height: 25%;
   font-size: 0.5rem;
+  text-align: center;
   &:first-child {
     border-bottom: none;
   }

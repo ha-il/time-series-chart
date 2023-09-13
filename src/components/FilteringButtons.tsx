@@ -28,6 +28,7 @@ function FilteringButtons() {
             onClick={filterById}
             value={value}
             $isSelected={value === filteringId}
+            $value={value}
           >
             {value}
           </Button>
@@ -43,6 +44,17 @@ const Buttons = styled.ul`
   margin: 0 0 16px 0;
 `;
 
-const Button = styled.button<{ $isSelected: boolean }>`
-  background-color: ${(props) => (props.$isSelected ? 'blue' : 'white')};
+const Button = styled.button<{ $isSelected: boolean; $value: string }>`
+  background-color: ${(props) =>
+    props.$isSelected && props.$value !== '해제'
+      ? 'var(--main-color)'
+      : 'white'};
+  color: ${(props) =>
+    props.$isSelected && props.$value !== '해제' ? 'white' : 'black'};
+  border: 2px solid var(--main-color);
+  border-radius: 8px;
+  padding: 4px 16px;
+  margin: 0 8px 0 0;
+  cursor: pointer;
+  font-weight: 700;
 `;

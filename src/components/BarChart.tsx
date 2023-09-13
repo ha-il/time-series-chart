@@ -37,16 +37,17 @@ const BarChartWrapper = styled.ul`
 
 const Bar = styled.li<{ $valueBar: number; $isFilterd: boolean }>`
   background-color: ${(props) =>
-    props.$isFilterd ? 'rgba(108, 92, 231,1.0)' : 'rgba(162, 155, 254, 1)'};
+    props.$isFilterd ? 'var(--filtering-color)' : 'var(--main-color)'};
   width: 16px;
-  height: ${(props) => `${props.$valueBar / 197}%`};
+  height: ${(props) => `${props.$valueBar / 198}%`};
   margin-right: 1px;
   &:first-child {
     margin-left: 1px;
   }
-  &:hover .tool_tip {
+  &:hover div {
     display: block;
   }
   position: relative;
   cursor: pointer;
+  transition: background-color 0.4s ease-in-out;
 `;
