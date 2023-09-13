@@ -36,7 +36,6 @@ const XAxisWrapper = styled.ul`
   display: flex;
   justify-content: space-between;
   border-top: 1px solid black;
-  //background-color: tomato;
 `;
 
 const XAxisValue = styled.li`

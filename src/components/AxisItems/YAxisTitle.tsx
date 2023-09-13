@@ -17,7 +17,6 @@ export default YAxisTitle;
 const YAxisTitleWrapper = styled.div`
   height: 100%;
   width: 50%;
-  //background-color: green;
   display: flex;
   align-items: center;
   justify-content: center;
