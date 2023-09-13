@@ -38,12 +38,15 @@ export default App;
 const ChartWrapper = styled.div`
   display: grid;
   height: 80vh;
-  grid-template-columns: 10% 80% 10%;
+  grid-template-columns: 1fr 90% 1fr;
   grid-template-rows: 90% 10%;
   & .four {
     grid-column: 1 / 4;
   }
+  justify-items: stretch;
 `;
 const Charts = styled.div`
   position: relative;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
 `;

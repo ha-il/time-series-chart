@@ -1,6 +1,31 @@
 import React from 'react';
+import styled from 'styled-components';
 
-function YAxisLable() {
-  return <span>Y축 레이블</span>;
+type YAxisLableProps = {
+  values: number[];
+};
+
+function YAxisLable({ values }: YAxisLableProps) {
+  return (
+    <YAxisLableWrapper>
+      {values.map((value) => (
+        <YAxisLableValue>{value}</YAxisLableValue>
+      ))}
+    </YAxisLableWrapper>
+  );
 }
 export default YAxisLable;
+
+const YAxisLableWrapper = styled.ul`
+  height: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  background-color: cornflowerblue;
+`;
+
+const YAxisLableValue = styled.li`
+  border-bottom: 1px solid black;
+  height: 25%;
+  font-size: 0.5rem;
+`;
