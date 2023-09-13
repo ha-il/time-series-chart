@@ -9,7 +9,7 @@ function YAxisLable({ values }: YAxisLableProps) {
   return (
     <YAxisLableWrapper>
       {values.map((value) => (
-        <YAxisLableValue>{value}</YAxisLableValue>
+        <YAxisLableValue key={value}>{value}</YAxisLableValue>
       ))}
     </YAxisLableWrapper>
   );
@@ -18,6 +18,7 @@ export default YAxisLable;
 
 const YAxisLableWrapper = styled.ul`
   height: 100%;
+  width: 50%;
   display: flex;
   flex-direction: column-reverse;
   justify-content: space-between;
@@ -28,4 +29,7 @@ const YAxisLableValue = styled.li`
   border-bottom: 1px solid black;
   height: 25%;
   font-size: 0.5rem;
+  &:first-child {
+    border-bottom: none;
+  }
 `;

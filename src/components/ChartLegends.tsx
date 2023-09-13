@@ -9,9 +9,7 @@ function ChartLegends() {
   return (
     <Legends>
       {LEGENDS_VALUES.map(({ id, value }) => (
-        <li key={id}>
-          <button type="button">{value}</button>
-        </li>
+        <LegendElement key={id}>{value}</LegendElement>
       ))}
     </Legends>
   );
@@ -19,8 +17,13 @@ function ChartLegends() {
 export default ChartLegends;
 
 const Legends = styled.ul`
-  margin: 0;
+  margin: 16px 0 0 0;
   padding: 0;
   list-style: none;
   display: flex;
+  justify-content: center;
+`;
+
+const LegendElement = styled.li`
+  margin: 0 8px;
 `;

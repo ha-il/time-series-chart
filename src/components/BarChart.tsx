@@ -8,7 +8,7 @@ function BarChart({ chartValues, chartTimes }: ChartProps) {
   const { filteringId, setFilteringId } = useFiltering();
 
   const filterByBar: MouseEventHandler<HTMLLIElement> = ({ currentTarget }) => {
-    setFilteringId(currentTarget.id);
+    setFilteringId(currentTarget.dataset.id || '');
   };
 
   return (
@@ -19,7 +19,7 @@ function BarChart({ chartValues, chartTimes }: ChartProps) {
           $valueBar={chartValue.value_bar}
           $isFilterd={chartValue.id === filteringId}
           onClick={filterByBar}
-          id={chartValue.id}
+          data-id={chartValue.id}
         >
           <ToolTip chartValue={chartValue} />
         </Bar>
@@ -48,4 +48,5 @@ const Bar = styled.li<{ $valueBar: number; $isFilterd: boolean }>`
     display: block;
   }
   position: relative;
+  cursor: pointer;
 `;

@@ -22,7 +22,7 @@ function XAxis({ className, chartTimes }: XAxisProps) {
   return (
     <XAxisWrapper className={className}>
       {filteredTimes.map((time) => (
-        <XAxisValue>{time}</XAxisValue>
+        <XAxisValue key={time}>{time}</XAxisValue>
       ))}
     </XAxisWrapper>
   );
