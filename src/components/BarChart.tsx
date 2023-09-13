@@ -1,12 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ChartProps } from '../types';
+import { useFiltering } from '../contexts/filteringContext';
 
 function BarChart({ chartValues, chartTimes }: ChartProps) {
+  const { filteringId } = useFiltering();
   return (
     <BarChartWrapper>
       {chartValues.map((chartValue, idx) => (
-        <Bar key={chartTimes[idx]} $valueBar={chartValue.value_bar} />
+        <Bar
+          key={chartTimes[idx]}
+          $valueBar={chartValue.value_bar}
+          $isFilterd={chartValue.id === filteringId}
+        />
       ))}
     </BarChartWrapper>
   );
@@ -19,9 +25,13 @@ const BarChartWrapper = styled.ul`
   height: 100%;
 `;
 
-const Bar = styled.li<{ $valueBar: number }>`
-  background-color: rgba(162, 155, 254, 1);
-  margin-right: 1px;
+const Bar = styled.li<{ $valueBar: number; $isFilterd: boolean }>`
+  background-color: ${(props) =>
+    props.$isFilterd ? 'rgba(108, 92, 231,1.0)' : 'rgba(162, 155, 254, 1)'};
   width: 16px;
   height: ${(props) => `${props.$valueBar / 200}%`};
+  margin-right: 1px;
+  &:first-child {
+    margin-left: 1px;
+  }
 `;
